@@ -1,0 +1,257 @@
+class StudentForm extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {stname:'',lname:'',isPass:true, noOfAttempts:5};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event){
+    //this.setState({value: event.target.value});
+    const target = event.target;
+    const value = target.name === "isPass" ? target.checked: target.value;
+    const name = target.name;
+
+    console.log(name +" "+ value);
+    this.setState({[name]:value});
+  }
+
+  handleSubmit(event){
+    alert('Are you sure you want to submit your country? '+this.state.stname+" "+ this.state.isPass+" "+this.state.noOfAttempts);
+    event.preventDefault();
+  }
+
+
+  render(){
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name: 
+          <input name="stname" type="text" value={this.state.stname} onChange={this.handleChange}/>
+        </label>
+        <label>
+          Last Name: 
+          <input name="lname" type="text" value={this.state.lname} onChange={this.handleChange}/>
+        </label>
+        <label>
+          IsPass?
+          <input name="isPass" type="checkbox" checked={this.state.isPass} onChange={this.handleChange}/>
+        </label>
+        <label>
+          <input name="noOfAttempts" type="number" value={this.state.noOfAttempts} onChange={this.handleChange}/>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+ReactDOM.render(  
+  <StudentForm /> ,
+document.getElementById('root')
+);
+___________________________________________________________________________________________________________________________________________________________________________________________
+
+// function MyCalculatorWithHook(props){
+
+//   const[first,setFirst] = useState(props.a);
+//   const[second,setSecond] = useState(props.b);
+//   const[result,setResult] = useState(0);
+//   const[results,setResults] = useState(0);
+//   const[resultm,setResultm] = useState(0);
+//   const[resultd,setResultd] = useState(0);
+ 
+
+//   const handleResult = () =>{
+//     setResult(parseInt(first)+parseInt(second));
+//     setResults(parseInt(first)-parseInt(second));
+//     setResultm(parseInt(first)*parseInt(second));
+//     setResultd(parseInt(first)/parseInt(second));
+//   }
+
+//   return(
+//     <div>
+//       <p>Add of {first} and {second} is {result}</p>
+//       <button onClick={handleResult}>Add</button>
+//       <p>sub of {first} and {second} is {results}</p>
+//       <button onClick={handleResult}>sub</button>
+//       <p>mul of {first} and {second} is {resultm}</p>
+//       <button onClick={handleResult}>mul</button>
+//       <p>div of {first} and {second} is {resultd}</p>
+//       <button onClick={handleResult}>div</button>
+      
+
+//     </div>
+    
+//   );
+
+// }
+
+// ReactDOM.render(  
+//   <MyCalculatorWithHook a="50" b="40"/> ,
+// document.getElementById('root')
+// );
+// function MyCalculatorWithHook(){
+
+//   var [number1,setNumber1] = useState(0);
+//   var [number2,setNumber2] = useState(0);
+//   var [result,setResult] = useState(0);
+
+//   const handleResult = (con) =>{
+//     console.log("inside");
+//     var ans="";
+//      number1 = document.getElementById("number1").value;
+//      number2 = document.getElementById("number2").value;
+//      number1=parseInt(number1);
+//      number2=parseInt(number2);
+//     setNumber1(number1);
+//     setNumber2(number2);
+//     switch(con)
+//     {
+//       case "+":ans=number1+number2;
+//               break;
+//       case "-":ans=number1-number2;
+//               break;
+//       case "*":ans=number1*number2;
+//                 break;
+//       case "/":ans=number1/number2;
+//                 break;
+//     }
+//     setResult(ans);
+//   }
+
+//   return(
+//     <>
+//     <br/>
+//     <table >
+//       <tr>
+//         <td>
+//           <p><h2></h2></p>
+//         </td>
+//         <td>
+//           <input type="number" id="number1" ></input>
+//         </td>
+//         <td>
+//          <input type="number" id="number2"></input>
+//         </td>
+//         <td>
+//         <p><h2> = &nbsp;</h2></p>
+//         </td>
+//         <td>
+//          <h1><p>&nbsp;{result}</p></h1>
+//         </td>
+//       </tr>
+//     </table>
+//     <div>
+//     <button onClick={()=>handleResult("+")}>+</button>
+//     <button onClick={()=>handleResult("-")}>-</button>
+//     <button onClick={()=>handleResult("*")}>*</button>
+//     <button onClick={()=>handleResult("/")}>/</button>
+//     </div>
+//     </>
+//   );
+
+// }
+// ReactDOM.render(  
+//   <MyCalculatorWithHook /> ,
+// document.getElementById('root')
+// );
+class SignUp extends React.Component{
+      constructor(props){
+        super(props);
+        this.state = {stname:'',lname:'',newPass:'',phoneNumber:'',DOB:'',Gender:"", ispass:true};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+    
+      handleChange(event){
+        //this.setState({value: event.target.value});
+        const target = event.target;
+        const value = target.name === "isPass" ? target.checked: target.value;
+        const name = target.name;
+    
+        console.log(name +" "+ value);
+        this.setState({[name]:value});
+      }
+    
+      handleSubmit(event){
+        alert('Are you sure you want to submit? '+this.state.stname+" "+ this.state.isPass+" "+this.state.noOfAttempts);
+        event.preventDefault();
+      }
+    
+    
+      render(){
+        return(
+          
+          <form onSubmit={this.handleSubmit}>
+            <div>
+            <b><label>
+              Name: 
+              <input name="stname" type="text" value={this.state.stname} onChange={this.handleChange}/>
+            </label>
+            </b>
+            </div>
+            <div>
+            <b>
+            <label>
+              Last Name: 
+              <input name="lname" type="text" value={this.state.lname} onChange={this.handleChange}/>
+            </label>
+            </b>
+            </div>
+            <div>
+            <b>
+            <label>
+              New Password: 
+              <input name="newPass" type="password" value={this.state.newPass} onChange={this.handleChange}/>
+            </label>
+            </b>
+            </div>
+            <div>
+            <b>
+            <label>
+              Phone Number: 
+              <input name="phoneNumber" type="number" value={this.state.phoneNumber} onChange={this.handleChange}/>
+            </label>
+            </b>
+            </div>
+            <div>
+            <b>
+            <label>
+              DOB 
+              <input name="DOB" type="date" value={this.state.DOB} onChange={this.handleChange}/>
+            </label>
+            </b>
+            </div>
+            <div>
+            <b>
+            <label>
+            <div>
+          <select name="Gender" value={this.state.Gender} onChange={this.handleChange} aria-label="Default select example">
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+            <option value="r">Rather not to say</option>
+          </select>
+          </div>
+            </label>
+            </b> 
+            </div>
+            <div>
+            <b>
+            <label>
+              condition accept?
+              <input name="isPass" type="checkbox" checked={this.state.isPass} onChange={this.handleChange}/>
+            </label>
+            </b>
+            </div>
+            <input type="submit" value="Submit" />
+          </form>
+    
+        );
+      }
+    }
+    
+    ReactDOM.render(  
+      <SignUp /> ,
+    document.getElementById('root')
+    );

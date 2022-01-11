@@ -1,0 +1,257 @@
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
+import React from 'react'
+import './App.css';
+import ProductTable from './tables/ProductTable';
+
+const App = () =>{
+  const productList = [
+    {id:1,productName:'iphone 13',brandName:'Apple iphone',price:120000,noOfQuantity:'10',image:<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2g_PSkv1LUyZK7hGn3aqROS7flqy8dDBkIg&usqp=CAU" alt="image" />},
+    {id:2,productName:'HP core i3',brandName:'HP',price:50000,noOfQuantity:'10',image:<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuWVZN5wNbLuV7oYitZXCXArgZA6jYIMG2VA&usqp=CAU" alt="image" />},
+    {id:3,productName:'Anolog watch',brandName:'Fastrack',price:1000,noOfQuantity:'10',image:<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKqvWFc_BEIbzoN4jAZMOAEj85Neud0kW2dA&usqp=CAU" alt="image" />},
+    {id:4,productName:'Ac',brandName:'Whirlpool',price:40000,noOfQuantity:'10',image:<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPp6UoLP_uhozKHtk-ThF4nCKMma0iVm9QXA&usqp=CAU" alt="image" />},
+    {id:5,productName:'4G Router',brandName:'hanutech',price:3000,noOfQuantity:'10',image:<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSHBHoXz31XsoGvwhMIoMTwVUIj_aZYSDVwBrDLUv51Y1hOWFYboFopFa3gCsEjhYzCw&usqp=CAU" alt="image" />},
+    {id:6,productName:'CPU',brandName:'Lenova',price:54000,noOfQuantity:'10',image:<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy5LtsIERRzKPqwAHLivb-Th2Yt3igMRnUFQ&usqp=CAU" alt="image" />},
+    {id:7,productName:'Mouse',brandName:'Zebrabic',price:700,noOfQuantity:'10',image:<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzI2YHOwTwYHdrfQJMK1IulfYo9qYxx7P1Pg&usqp=CAU" alt="image" />}
+  ];
+
+  const [products,setProducts] = useState(productList);
+
+  return(
+    <div className='container'>
+      <h1>Welcome to Shopping Application..!!</h1>
+      <div className='flex-row'>
+        <div className='flex-largs'>
+          <h2>Product lists</h2>
+          <ProductTable products={products} />
+        </div>
+      </div>
+    </div>
+  );
+
+}
+export default App;
+
+
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const ProductTable = (props) => {
+
+    return(
+        <table>
+            <thead>
+                <tr>
+                    <th>ProductName</th>
+                    <th>BrandName</th>
+                    <th>Price</th>
+                    <th>NoOfQuantity</th>
+                    <th>image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.products.length > 0 ? (
+                    props.products.map( (Product) =>
+                <tr key={Product.id}>
+                    <td>{Product.productName}</td>
+                    <td>{Product.brandName}</td>
+                    <td>{Product.price}</td>
+                    <td>{Product.noOfQuantity}</td>
+                    <td>{Product.image}</td>
+                </tr>
+                )):(
+                    <tr>
+                        <td colSpan={6}>No User Found.</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
+    );
+
+}
+
+export default ProductTable;
+Img{
+Width;100px;
+Height;100px;
+}
+_______________________________
+/ function App() {
+
+//   // React hooks for having and setting state.
+//   const [item_name, setItemName] = useState('')
+//   const [item_quantity, setItemQuantity] = useState(1);
+
+//   const [cart_list, addToCartList] = useState([]);
+
+//   const handleItemNameChange = (event) => {
+//     setItemName(event.target.value);
+//   }
+
+ 
+
+//   const handleItemQuantityChange = (event) => {
+//     setItemQuantity(event.target.value);
+//   }
+
+//   const handleAddToList = (event) => {
+//     if (item_name === "") {
+//       return;
+//     }
+//     addToCartList([...cart_list, { item_name, item_quantity }]);
+//   }
+
+//   const handleClearAll = (event) => {
+//     event.preventDefault();
+//     addToCartList([]);
+//   }
+
+//   const handleCancel = (event) => {
+//     event.preventDefault();
+//     setItemName('');
+//     setItemQuantity(1);
+//   }
+
+//   const handleItemRemove = (element) => {
+//     const cartList = [...cart_list]; //present state
+//     const indexToDelete = cartList.indexOf(element);
+
+//     cartList.splice(indexToDelete, 1);
+
+//     addToCartList([...cartList]);
+
+//   }
+
+//   const listHeader = (cart_list.length === 0 ?
+//     <h2>Shopping List</h2> :
+//     <h2 className="listHeader">{cart_list.length} {cart_list.length > 1 ? "items" : "item"}
+//       <button onClick={handleClearAll} class="btn-clear-all">clear all</button></h2>);
+
+//   return (
+//     <div className="App" >
+//       <div className="shopping__list">
+//         {listHeader}
+//         <hr />
+//         {cart_list.length === 0 && <p>There are no items selected.</p>}
+//         {
+//           cart_list.map((elem, key) => {
+//             return (
+//               <div key={key} className="display__item">
+//                 <p className="display__item--name">{elem.item_quantity} x {elem.item_name}</p>
+//                 <p className="display__item--remove">
+//                   <button className="btn--remove" name="remove" onClick={() => handleItemRemove(elem)}>remove</button>
+//                 </p>
+//               </div>
+//             )
+//           })}
+//       </div>
+//       <div className="add__item">
+//         <h2>Add new item</h2>
+//         <hr />
+//         <form method="POST" action="javascript:void(0);">
+//           <p>Name*</p>
+//           <input
+//             type="text"
+//             placeholder="Enter name"
+//             name="item_name"
+//             value={item_name}
+//             onChange={handleItemNameChange}
+//             required />
+
+//           <p>Quantity</p>
+//           <input
+//             type="number"
+//             min="1"
+//             default="1"
+//             name="item_quantity"
+//             value={item_quantity}
+//             onChange={handleItemQuantityChange}
+//             required />
+//           <hr />
+//           <button type="submit" onClick={handleAddToList} className="add">Add to list</button>
+//           <button type="reset" onClick={handleCancel} className="cancel">cancel</button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// export default App;
+___________________________________________________________________________________________________________
+const items = [
+  {
+    id: 1,
+    name: "iphone",
+    img: <img src="I:\React_imarticus\shopping\src\iphone13" width="100" height="50" />   ,
+    price: 120000,
+  },
+  {
+    id: 2,
+    name: "oppo",
+    price: 32000,
+  },
+  {
+    id: 3,
+    name: "onepluse",
+    price: 510000,
+  },
+];
+
+const Shop = () => {
+  const [cart, setCart] = React.useState([]);
+  const cartTotal = cart.reduce((total, { price = 0 }) => total + price, 0);
+
+  const addToCart = (item) => setCart((currentCart) => [...currentCart, item]);
+
+  const removeFromCart = (item) => {
+    setCart((currentCart) => {
+      const indexOfItemToRemove = currentCart.findIndex((cartItem) => cartItem.id === item.id);
+
+      if (indexOfItemToRemove === -1) {
+        return currentCart;
+      }
+
+      return [
+        ...currentCart.slice(0, indexOfItemToRemove),
+        ...currentCart.slice(indexOfItemToRemove + 1),
+      ];
+    });
+  };
+
+  const amountOfItems = (id) => cart.filter((item) => item.id === id).length;
+
+  const listItemsToBuy = () => items.map((item) => (
+    <div key={item.id}>
+      {`${item.name}: rs${item.price}`}
+      <button type="submit" onClick={() => addToCart(item)}>Add</button>
+    </div>
+  ));
+
+  const listItemsInCart = () => items.map((item) => (
+    <div key={item.id}>
+      ({amountOfItems(item.id)} x rs{item.price}) {`${item.name}`}
+      <button type="submit" onClick={() => removeFromCart(item)}>Remove</button>
+    </div>
+  ));
+
+  return (
+    <center>
+    <div className="container">
+       STORE 
+      <div>{listItemsToBuy()}</div>
+      <div>CART</div>
+      <div>{listItemsInCart()}</div>
+      <div>Total: rs{cartTotal}</div>
+      <div>
+        <button onClick={() => setCart([])}>Clear</button>
+      </div>
+    </div >
+    </center>
+
+    
+    
+  );
+};
+
+export default Shop;

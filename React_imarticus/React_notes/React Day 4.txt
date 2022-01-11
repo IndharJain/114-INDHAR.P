@@ -1,0 +1,397 @@
+//working with lists in react
+
+const posts = [
+  {id:101,title:"First Post",content:"This is content from first post."},
+  {id:102,title:"Second Post",content:"This is content from second post."}
+]
+
+//you should always have key while working with list items otherwise error in production strict mode
+function Blog(props){
+  const sideBar = (
+    <ul>
+      {props.posts.map(
+        (post) =>
+        <li key={post.id}>
+          {post.title}
+        </li>
+      )}
+    </ul>
+  );
+
+  const content = props.posts.map(
+    (post) =>
+        <div key={post.id}>
+          <h3>{post.title}</h3>
+          <p>{post.content}</p>
+        </div>      
+  );
+
+  return(
+    <div>
+      {sideBar}
+      <hr />
+      {content}
+    </div>
+  );
+}
+
+ReactDOM.render(  
+  <Blog posts={posts}/> ,
+document.getElementById('root')
+);
+
+_________________________________________________________________________________________________________________________________________
+
+
+Create react component for currency conversion.
+10 dollar
+into rupees
+into yen
+class CurrencyConverter extends React.Component
+{
+  constructor()
+  {
+    super();
+    this.handlerC = this.handlerC.bind(this);
+    this.state={
+      curreCurrency:"INR",
+      value:"",
+    }
+  
+
+  toInr()
+  {
+   if(this.state.currentCurrency=="DOLLAR")
+   {
+     this.setState(i=>(
+       {
+         currentCurrency:"INR",
+         value:parseFloat(i.value*75)
+       }
+     ))
+   }
+   if(this.state.currentCurrency=="YEN")
+   {
+     this.setState(i=>(
+       {
+         currentCurrency:"INR",
+         value:parseFloat(i.value*40)
+       }
+     ))
+   }
+
+  }
+  toDollar()
+  {
+   
+    if(this.state.currentCurrency=="INR")
+   {
+     this.setState(i=>(
+       {
+         currentCurrency:"DOLLAR",
+         value:parseFloat(i.value/75)
+       }
+     ))
+   }
+   if(this.state.currentCurrency=="YEN")
+   {
+     this.setState(i=>(
+       {
+         currentCurrency:"DOLLAR",
+         value:parseFloat(i.value/30)
+       }
+     ))
+   }
+
+  }
+
+  toYen()
+  {
+    if(this.state.currentCurrency=="DOLLAR")
+   {
+     this.setState(i=>(
+       {
+         currentCurrency:"YEN",
+         value:parseFloat(i.value*30)
+       }
+     ))
+   }
+   if(this.state.currentCurrency=="INR")
+   {
+     this.setState(i=>(
+       {
+         currentCurrency:"YEN",
+         value:parseFloat(i.value/40)
+       }
+     ))
+   }
+  }
+  
+  handlerC(btnId)
+  {
+    var val= document.getElementById("input").value;
+    this.setState({
+      value : val
+    });
+    console.log(this.state.value);
+   if(btnId=="INR"){
+      this.toInr();
+   }else if(btnId=="DOLLAR"){
+     this.toDollar();
+   }else if(btnId=="YEN")
+   {
+     this.toYen();
+   }
+   
+  }  
+
+  render()
+  {
+    return(
+    <>
+
+    <div>
+    <tr> <input  id="input" type="text" defaultValue={this.state.value}/></tr>
+   <h2>{this.state.currentCurrency}: {this.state.value}</h2>
+  
+   <h2>
+   <button id="inr" onClick={()=>this.handlerC("INR")} onChange={this.changeHandler}>INR</button>
+   <button id="dol" onClick={()=>this.handlerC("DOLLAR")} onChange={this.changeHandler}>DOLLAR</button>
+   <button id="yen" onClick={()=>this.handlerC("YEN")} onChange={this.changeHandler}>YEN</button>
+   </h2>
+   <table>
+     <tr>
+   <h2>{this.state.currentCurrency} To</h2>
+   </tr>
+   
+   
+   </table>
+   </div>
+    </>
+    
+    );
+  }
+}
+
+ReactDOM.render(
+  <CurrencyConverter />,
+  document.getElementById("root")
+);
+
+
+// function CurrencyMessage(props){
+//   if(props.rupees >= 1000){
+//     return <p>This is too much money.</p>
+//   }
+//   return <p>No This is not too much money.</p>
+// }
+
+// const unitName = {
+//   r:'rupees',
+//   d:'dollar'
+// };
+
+// function toRupees(dollar){
+//   return (dollar*75);
+// }
+
+// function toDollar(rupees){
+//   return (rupees/75);
+// }
+
+// class CurrencyInput extends React.Component{
+//   constructor(props){
+//     super(props);
+//     //this.state = {currency:''};
+//     this.handleChange = this.handleChange.bind(this);
+//   }
+
+//   handleChange(event){
+//     //this.setState({currency: event.target.value});
+//     this.props.onCurrencyChange(event.target.value);
+//   }
+
+//   render(){
+//     //const currency = this.state.currency;
+//     const currency = this.props.currency;
+//     const unit = this.props.unit;
+
+//     return(
+//       <fieldset>
+//         <legend>Enter Your Currency in {unitName[unit]}: </legend>
+//         <input value={currency} onChange={this.handleChange}></input>
+//         <CurrencyMessage rupees={currency}/>
+//       </fieldset>
+//     );
+//   }
+// }
+
+// class Calculator extends React.Component{
+
+//   constructor(props){
+//     super(props);
+//     this.state = {currency:'',unit:'r'};
+//     this.handleDollarChange = this.handleDollarChange.bind(this);
+//     this.handleRupeeChange = this.handleRupeeChange.bind(this);
+//   }
+
+//   handleRupeeChange(currency){
+//     this.setState({unit:'r',currency});
+//   }
+
+//   handleDollarChange(currency){
+//     this.setState({unit:'d',currency});
+//   }
+
+//   render(){
+//     const currency = this.state.currency;
+//     const unit = this.state.unit;
+//     const rupees = unit === 'd' ? toRupees(currency):currency;
+//     const dollar = unit === 'r' ? toDollar(currency):currency;
+//     return(
+//       <div>
+//         <CurrencyInput unit='r' currency={rupees} onCurrencyChange = {this.handleRupeeChange}/>
+//         <CurrencyInput unit='d' currency={dollar} onCurrencyChange = {this.handleDollarChange}/>
+//       </div>
+//     );
+//   }
+// }
+// ReactDOM.render(  
+//   <Calculator /> ,
+// document.getElementById('root')
+// );
+_____________________________________________________________________________________________________________________________________________________________________________
+
+
+class Calculator extends React.Component
+{
+  constructor()
+  {
+    super();
+    this.handlerC = this.handlerC.bind(this);
+    
+    this.state={
+      a:"",
+      b:"",
+      cal:'',
+      ans:"",
+    }
+  }
+  handlerC(cal)
+  {
+    var ans;
+    var a= document.getElementById("a").value;
+    var b=document.getElementById("b").value;
+    a=parseInt(a);
+    b=parseInt(b);
+    switch(cal)
+    {
+      case "+":ans=a+b;
+              break;
+      case "-":ans=a-b;
+              break;
+      case "*":ans=a*b;
+                break;
+      case "/":ans=a/b;
+                break;
+    }
+   this.setState(({
+      a:a,
+      b:b,
+      ans:ans,
+      cal:cal
+   }));
+  }  
+
+  render()
+  {
+    return(
+    <>
+   <table>
+     <tr>
+   <h2>{this.state.a} {this.state.orp} {this.state.b} = {this.state.ans} </h2>
+   </tr>
+   <tr> <input  id="a" type="text" defaultValue={this.state.a}/></tr>
+   <tr> <input  id="b" type="text" defaultValue={this.state.b}/></tr>
+   </table>
+   <button id="inr" onClick={()=>this.handlerC("+")} >+</button>
+   <button id="inr" onClick={()=>this.handlerC("-")} >-</button>
+   <button id="inr" onClick={()=>this.handlerC("*")} >*</button>
+   <button id="inr" onClick={()=>this.handlerC("/")} >/</button>
+    </>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Calculator />,
+  document.getElementById("root")
+);
+
+__________________________________________________________________________________________________________________________________________________________________________________________
+class Grade extends React.Component
+{
+  constructor()
+  {
+    super();
+    this.handler = this.handler.bind(this);
+    this.state={
+      a:"",
+      b:"",
+      c:"",
+      grade:"",
+    }
+  }
+  handler()
+  {
+    var grade;
+    var a= document.getElementById("a").value;
+    var b=document.getElementById("b").value;
+    var c=document.getElementById("c").value;
+    a=parseInt(a);
+    b=parseInt(b);
+    c=parseInt(c);
+    var result=((a+b+c)/3);
+   if(result>=90 && result<=100)
+   {
+     grade="A";
+   }else if(result>=80 && result<90)
+   {
+     grade = "B";
+   }else if(result>=70 && result<80)
+   {
+     grade="c"
+   }else{
+     grade="Fail"
+   }
+   this.setState(({
+      a:a,
+      b:b,
+      grade:grade,
+   }));
+   console.log(grade);
+   console.log(result);
+  }  
+
+  render()
+  {
+    return(
+    <>
+   <table>
+     <tr>
+   <h1>Grade= {this.state.grade} </h1>
+   </tr>
+   <tr> <input  id="a" type="text" defaultValue={this.state.a}/></tr>
+   <tr> <input  id="b" type="text" defaultValue={this.state.b}/></tr>
+   <tr> <input  id="c" type="text" defaultValue={this.state.c}/></tr>
+   </table>
+   <button id="calculate" onClick={this.handler}>GradeGen</button>
+    </>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Grade />,
+  document.getElementById("root")
+);

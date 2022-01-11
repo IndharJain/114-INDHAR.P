@@ -1,0 +1,189 @@
+Create a react component which is performing addition, take values as props.
+function Addition(props){
+  let result = props.a + props.b;
+  return <h1>Addition of {props.a} and {props.b} is {result}</h1>
+}
+
+ReactDOM.render(  
+    <Addition a="10" b="20"/> ,
+  document.getElementById('root')
+);
+From Praveen Sharma to Everyone 10:02 AM
+Create a Calculator component which will perform addition,sub,multi,div.
+accept values and operator as props, based on operatoe show only the desired result
+10,20,*
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+// ------------------------------------------------------------------------
+// function Add(props)
+// {
+//   let result =parseInt(props.a)+parseInt(props.b);
+//   return <h1>Addition of {props.a} and {props.b} is {result}</h1>
+// }
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Add a="10" b="20" />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+// ---------------------------------------------------------------------------
+function Calculation(props)
+{
+  let result =parseInt(props.a)+parseInt(props.b);
+  let result1 =parseInt(props.a)-parseInt(props.b);
+  let result2 =parseInt(props.a)*parseInt(props.b);
+  let result3 =parseInt(props.a)/parseInt(props.b);
+  return <h1>Calculation of {props.a} and {props.b}  add = {result} sub ={result1} mul = {result2} div = {result3}</h1>
+}
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Calculation a="10" b="20" />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+__________________________________________________________________________________________________________________________________________
+
+Create a grading component which is accepting 3 subject marks
+
+function Grading(props){
+  let maths = parseInt(props.a);
+  let cs = parseInt(props.b);
+  let english = parseInt(props.c);
+   let result = (maths + cs + english)/3;
+  if (result>=90){
+  return <h1> marks scored {props.a}, {props.b} and  {props.c} - A grade </h1>
+} else if (result>=80){
+  return <h1> marks scored {props.a}, {props.b} and  {props.c} - B grade </h1>
+} else if (result>=70){
+  return <h1> marks scored {props.a}, {props.b} and  {props.c} - c grade </h1>
+} else{ 
+  return <h1> marks scored {props.a}, {props.b} and  {props.c} - Fail </h1> }
+}
+
+ReactDOM.render(
+  <Grading a="80" b="80" c="80"/>,
+  document.getElementById('root')
+);
+
+_______________________________________________________________________________________________________________________________________________
+class Calculator extends React.Component{
+  constructor(props)
+  {
+    super(props);
+    this.state={ a: '20', b: '40', result: '' };
+    this.AddHandler = this.AddHandler.bind(this);
+    this.SubHandler = this.SubHandler.bind(this);
+    this.MultiHandler = this.MultiHandler.bind(this);
+    this.DivHandler = this.DivHandler.bind(this);
+  }
+AddHandler(){
+  this.setState({ result: parseInt(this.state.a) + parseInt(this.state.b) })
+}
+SubHandler(){
+  this.setState({ result: parseInt(this.state.b) - parseInt(this.state.a) })
+}
+MultiHandler(){
+  this.setState({ result: parseInt(this.state.a) * parseInt(this.state.b) })
+}
+DivHandler(){
+  this.setState({ result: parseInt(this.state.a) / parseInt(this.state.b) })
+}
+render() {
+  return(
+    <div>
+     
+      <h1>Calculator  {this.state.result}</h1>
+
+      <button onClick={()=>{this.AddHandler()}} >ADD</button>
+      <br/><br/>
+
+      <button onClick={()=>{this.SubHandler()}} >SUB</button>
+      <br/><br/>
+
+      <button onClick={()=>{this.MultiHandler()}} >MUL</button>
+      <br/><br/>
+
+      <button onClick={()=>{this.DivHandler()}} >DIV</button>
+      <br/><br/>
+    </div>
+  );
+}
+}
+ReactDOM.render
+(  
+  <Calculator/> ,
+document.getElementById('root')
+);
+
+_____________________________________________________________________________________________________________________________________________________________________
+// function Randoma(e) {
+//   e.target.setAttribute( 'src', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5XTIfBvecynI_oDCUO_kjCIkTAzadpCjIlg&usqp=CAU");
+//   e.target.setAttribute('alt', 'random1');
+// }
+
+// const Random1 = (
+//   <div>
+// <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc_3u_sivbOws6Bwlq11HsSwsmP70G0bHfYw&usqp=CAU" alt="random2" onClick={Randoma}
+//   />
+    
+//   </div>
+// );
+
+// ReactDOM.render(Randoma),
+//   document.getElementById('root')
+class ButtonImg extends React.Component
+{
+  constructor()
+  {
+    super();
+    this.randomHandler = this.randomHandler.bind(this);
+    this.a=true;
+  }
+
+  randomHandler()
+  {
+    this.a=!this.a;
+    console.log(this.a)
+    if(this.a)
+    {
+      document.getElementById("img").innerHTML="<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5XTIfBvecynI_oDCUO_kjCIkTAzadpCjIlg&usqp=CAU'></img>"
+      console.log(this.image)
+    }else{
+      document.getElementById("img").innerHTML="<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc_3u_sivbOws6Bwlq11HsSwsmP70G0bHfYw&usqp=CAU'></img>"
+      console.log(this.image)
+    }
+    
+   
+  }  
+
+  render()
+  {
+    return(
+    <>
+   <div id="img">
+
+   </div>
+   <div>
+   <button onClick={this.randomHandler}>Button</button>
+   </div>
+    </>
+    );
+  }
+}
+
+ReactDOM.render(
+  <ButtonImg  />,
+  document.getElementById("root")
+);
+

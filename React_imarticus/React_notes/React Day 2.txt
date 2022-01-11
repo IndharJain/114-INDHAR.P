@@ -1,0 +1,120 @@
+// var arr1 = [10,20,30,40,50,45,67];
+// var arr2 = [34,23,56,57,89,22,11];
+// function even(arr1,...aar2){
+  
+// res=0;
+//   res = ((arr1+aar2)/2==0)
+//   for (let i of arr2)
+//     {
+//       res+= i
+//     }
+//   return res;
+// }
+// console.log(even(arr1,arr2));
+
+
+// var arr1 = [10,20,30,40,50,45,67];
+// var arr2 = [34,23,56,57,89,22,11];
+// function add(aar1,...arr2){
+//   res=0
+//   res = arr1+arr2
+//   for(let i of arr2){
+//     res + = i
+//   }
+// }
+
+function EO()
+{
+  var a=[10,20,30,40,50,45,67];
+  var b=[34,23,56,57,89,22,11];
+  
+  var Even1=b.filter(j=>j%2==0);
+  var Even=a.filter(i=>i%2==0);
+
+return {Even,Even1};
+  
+}
+EO();
+// function evenAll(Even,...Even1){
+  
+// res=0;
+//   res = ((Even+Even1%2))
+//   for (let i of Even1)
+//     {
+//       res+= i
+//     }
+//   return res;
+// }
+// console.log(evenAll(Even,Even1));
+
+
+
+
+// 1) Give third array which is addition of even items from both array.
+
+arr1 = [10,20,30,40,50,45,67];
+arr2 = [34,23,56,57,89,22,11];
+arr3=[];
+arr4=[];
+finalArr=[];
+function sumOfevenArrays(arr1,...arr)
+{
+ 	result =0;
+ 	for(i of arr1)
+    {
+     if(i % 2 == 0)
+       {
+        arr3.push(i);
+       }
+    }
+for(arg of arr)
+  {
+    for(i of arr2)
+  {
+   if(i%2==0)
+     {
+       arr4.push(i);
+     }
+  }
+ 
+  }
+	len=Math.min(arr3.length,arr4.length)
+  console.log("length= ",len)
+  let count =0;
+ 	while(count<len)
+    {
+      finalArr.push(arr3[count]+arr4[count]);
+      count++;
+    }
+	return finalArr;
+}
+
+
+console.log(sumOfevenArrays(arr1,arr2));
+
+
+
+------------------------------------------------------------------------------------
+
+
+function identityMatrix(a) {
+  for (let i = 0; i < a.length; i++) 
+   {
+    for (let j = 0; j <a.length; j++)
+     {
+      x=a[0][0] 
+   if (a[i][j] !==x && i === j || a[i][j] && i !== j)
+     
+     return false
+     }
+  }
+  return true;
+}
+
+console.log(identityMatrix([[1, 0, 0],  [0, 1, 0],  [0, 0, 1]]))
+console.log(identityMatrix([[1, 0, 1],  [0, 1, 0],  [0, 0, 1]]))
+
+console.log(identityMatrix([[2, 0, 0],  [0, 2, 0],  [0, 0, 2]]))
+
+
+
