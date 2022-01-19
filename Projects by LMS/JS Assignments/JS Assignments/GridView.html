@@ -1,0 +1,31 @@
+<html>
+<head>
+ <meta charset="utf-8"/>
+    <title>Employee grid</title>
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.3.1207/styles/kendo.default-v2.min.css"/>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.3.1207/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="Empgrid"></div>
+<script>
+$("#Empgrid").kendoGrid({
+  columns: [
+    { field: "EmpId" },
+    { field: "Empname" },
+    { field: "Empemail" },
+    { field: "salary" }
+  ],
+  dataSource: {
+    data: [
+      {EmpId:"emp101", Empname: "abc", Empemail: "abc@gmail.com",salary:"3l" },
+      {EmpId:"emp102", Empname: "def", Empemail: "def@gmail.com",salary:"4l" },
+      {EmpId:"emp103", Empname: "ghi", Empemail: "ghi@gmail.com",salary:"5l" }
+    ]
+  }
+});
+</script>
+</body>
+</html>
